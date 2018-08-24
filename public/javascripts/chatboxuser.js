@@ -14,6 +14,7 @@ socket.on('admin-send-msg', function (data) {
 
 	var $html = $msg_cover;
 	$('.msg_history').append($html);
+	$('.msg_history').scrollTop($('.msg_history')[0].scrollHeight);
 });
 
 socket.on('history-msg', function (data) {
