@@ -14,6 +14,7 @@ const io = require('socket.io')(http);
 const jwt = require('jsonwebtoken');
 
 var indexRouter = require('./routes/index');
+var adminRouter = require('./routes/admin');
 var usersRouter = require('./routes/users');
 var apiRouter = require('./routes/api');
 
@@ -47,6 +48,7 @@ app.use(passport.session());
 
 
 app.use('/', indexRouter);
+app.use('/admin', adminRouter);
 app.use('/users', usersRouter);
 
 

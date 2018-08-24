@@ -21,7 +21,7 @@ var loggedin = function (req, res, next) {
 	if (req.isAuthenticated()) {
 		next();
 	} else {
-		res.redirect('/login');
+		res.render('admin/admin_login');
 	}
 }
 var adminLogin = function (req, res, next) {
@@ -32,17 +32,21 @@ var adminLogin = function (req, res, next) {
 	}
 }
 
-router.get('/admin', adminLogin, adminController.admin);
-router.post('/admin/login', adminController.adminLogin);
+router.get('/', loggedin, adminController.admin);
+router.get('/login',loggedin, adminController.admin);
+router.post('/login',passport.authenticate('local', {
+	failureRedirect: '/admin/login',
+	successRedirect: '/admin'
+}), adminController.adminLogin);
 
-router.get('/admin/add-cate', adminController.getCate);
-router.post('/admin/add-cate', adminController.createCate);
+router.get('/add-cate', adminController.getCate);
+router.post('/add-cate', adminController.createCate);
 
-router.get('/admin/add-product', adminController.getProduct);
-router.post('/admin/add-product', adminController.createProduct);
+router.get('/add-product', adminController.getProduct);
+router.post('/add-product', adminController.createProduct);
 
-router.get('/admin/add-user', adminController.getUser);
-router.post('/admin/add-user',[
+router.get('/add-user', adminController.getUser);
+router.post('/add-user',[
 	check('txtName').not().isEmpty().withMessage('username not empty !'),
 	check('txtPass').not().isEmpty().withMessage('password not empty !'),
 	check('txtRe-Pass').not().equals(check('txtPass')).withMessage('re-password not match !'),
