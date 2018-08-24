@@ -29,6 +29,10 @@ module.exports = {
 	admin: function (req, res, next) {
 		res.render('admin/admin', {'user': req.user});
 	},
+	logout: function (req, res, next) {
+		req.logout();
+		res.redirect('/');
+	},
 	getAdminLogin: function (req, res, next) {
 		res.render('admin/admin_login');
 	},

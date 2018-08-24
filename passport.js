@@ -12,7 +12,7 @@ module.exports = function (passport) {
 		done(null, user);
 	});
 	passport.use(new localStrategy(function (username, password, done) {
-		User.findOne({'username': username, 'level' : 1}, function (err, user) {
+		User.findOne({'username': username}, function (err, user) {
 			if (err) {
 				done(err);
 			} else {

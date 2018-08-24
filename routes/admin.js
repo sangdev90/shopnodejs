@@ -19,13 +19,17 @@ var publicController = require('../controllers/publicController');
 
 var loggedin = function (req, res, next) {
 	if (req.isAuthenticated()) {
-		next();
+		if (req.user.level === 1) {
+			next();
+		} else {
+			res.send('Account not permision !');
+		}
 	} else {
 		res.render('admin/admin_login');
 	}
 }
 var adminLogin = function (req, res, next) {
-	if (req.user) {
+	if (req.user.level === 1) {
 		next();
 	} else {
 		res.render('admin/admin_login');
@@ -34,18 +38,19 @@ var adminLogin = function (req, res, next) {
 
 router.get('/', loggedin, adminController.admin);
 router.get('/login',loggedin, adminController.admin);
+router.get('/logout', adminController.logout);
 router.post('/login',passport.authenticate('local', {
 	failureRedirect: '/admin/login',
 	successRedirect: '/admin'
 }), adminController.adminLogin);
 
-router.get('/add-cate', adminController.getCate);
-router.post('/add-cate', adminController.createCate);
+router.get('/add-cate',loggedin, adminController.getCate);
+router.post('/add-cate',loggedin, adminController.createCate);
 
-router.get('/add-product', adminController.getProduct);
+router.get('/add-product',loggedin, adminController.getProduct);
 router.post('/add-product', adminController.createProduct);
 
-router.get('/add-user', adminController.getUser);
+router.get('/add-user',loggedin, adminController.getUser);
 router.post('/add-user',[
 	check('txtName').not().isEmpty().withMessage('username not empty !'),
 	check('txtPass').not().isEmpty().withMessage('password not empty !'),
