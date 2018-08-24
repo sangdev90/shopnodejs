@@ -14,7 +14,7 @@ var Transaction  = require('../models/transaction.js');
 
 module.exports = {
 	getIndex: function(req, res, next) {
-		Product.find().sort({id : -1}).skip(0).limit(4).then(function (data) {
+		Product.find({'quantity': {$gt: 0}}).sort({id : -1}).skip(0).limit(4).then(function (data) {
 			let user;
 			if (req.isAuthenticated()) {
 				user = req.user;
@@ -79,7 +79,7 @@ module.exports = {
 	},
 	addCart: function (req, res, next) {
 		var id = req.params.id;
-		var cart = new Cart(req.session.cart ? req.session.cart : {items : {}});
+		var cart = new Cart(req.session.cart ? req.session.cart : {items: {}});
 
 		Product.findOne({'id' : id}).then(function (product) {
 			cart.add(id, product);
@@ -144,8 +144,14 @@ module.exports = {
 		});
 	},
 	getCheckout: function (req, res, next) {
-		var listItems = Object.values(req.session.cart.items);
-		res.render('checkout', {'user': req.user, 'cart': listItems});
+		
+		if (typeof req.session.cart.items !== undefined) {
+			var listItems = Object.values(req.session.cart.items);
+			res.render('checkout', {'user': req.user, 'cart': listItems});
+		} else {
+			res.send('Not have item to checkout !');
+		}
+		
 	},
 	createTransaction: function (req, res, next) {
 		if (req.session.cart) {
@@ -189,6 +195,18 @@ module.exports = {
 								if (err) { throw err; }
 
 							});
+						});
+					});
+				});
+				cartItems.forEach(function (value) {
+					var _id  = value.item._id;
+					Product.findOne({'_id': _id}).exec(function (err, doc) {
+						if (err) { throw err;}
+						doc.quantity = doc.quantity-1;
+						doc.save(function (err, result) {
+							if (err) {
+								throw err;
+							}
 						});
 					});
 				});
