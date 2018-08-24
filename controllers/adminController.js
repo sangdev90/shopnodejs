@@ -85,6 +85,7 @@ module.exports = {
 				newProduct.name = body.txtName;
 				newProduct.description = body.txtDesc;
 				newProduct.price = body.numPrice;
+				newProduct.quantity = body.numQuant;
 				newProduct.image = req.file.originalname;
 				newProduct.category_id = body.slcCate;
 				newProduct.save(function (err, result) {

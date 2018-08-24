@@ -5,9 +5,10 @@ var Schema = mongoose.Schema;
 var product = new Schema({
 	id : {type : Number},
 	name:  {type: String, required : true},
-	price: {type: Number,required:true},
+	price: {type: Number,required: true},
 	image: String,
 	description: String,
+	quantity: {type: Number,required: true},
 	category_id : {type : Number , default : 1},
 },{collection : "product"});
 
