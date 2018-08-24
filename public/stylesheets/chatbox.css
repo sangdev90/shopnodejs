@@ -6,6 +6,29 @@
   right: 20px;
   bottom: 10px;
 }
+.cover-chatbox {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 330px;
+  margin: 30px auto;
+  background: #E1E1E1;
+  z-index: 102;
+}
+.cover-chatbox .btn-login {
+  position: absolute;
+  top: 30%;
+  width: 150px;
+  height: 40px;
+  margin-left: 75px;
+  background: #F87D39;
+  color: #ffff;
+  padding: 12px 60px;
+  font-size: 18px;
+  text-decoration: none;
+  border-radius: 3px;
+}
 .container-chatbox{
   width: 300px;
   height: 360px;
@@ -15,12 +38,13 @@
   bottom: 0;
   background: white;
   display: none;
-  background: #3E75F1;
+  background: #3CA8F9;
   border-radius: 3px;
+  z-index: 100;
 }
 .text-center {
   float: left;
-  font-size: 18px;
+  font-size: 16px;
   margin: 10px 20px;
   color: #fff;
 }
@@ -46,7 +70,7 @@ img{ max-width:100%;}
   border: 1px solid #c4c4c4;
   clear: both;
   overflow: hidden;
-  background: #fff;
+  background: #ffff;
 }
 .top_spac{ margin: 20px 0 0;}
 
@@ -130,7 +154,7 @@ img{ max-width:100%;}
 }
 
 .sent_msg p {
-  background: #05728f none repeat scroll 0 0;
+  background: #3CA8F9 none repeat scroll 0 0;
   border-radius: 3px;
   font-size: 14px;
   margin: 0; color:#fff;
@@ -161,9 +185,8 @@ img{ max-width:100%;}
 
 }
 .msg_send_btn {
-  background: #05728f none repeat scroll 0 0;
+  background: #3CA8F9 none repeat scroll 0 0;
   border: medium none;
-
   color: #fff;
   cursor: pointer;
   font-size: 17px;

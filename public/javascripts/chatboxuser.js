@@ -1,4 +1,4 @@
-var socket = io('https://shoppingnodejs.herokuapp.com');
+var socket = io('https://shoppingnodejs.herokuapp.com' || 'http://localhot:3000');
 
 socket.on('admin-send-msg', function (data) {
 	var $msg_cover = `<div class="incoming_msg">
