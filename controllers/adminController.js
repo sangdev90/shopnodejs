@@ -29,6 +29,9 @@ module.exports = {
 	admin: function (req, res, next) {
 		res.render('admin/admin', {'user': req.user});
 	},
+	getAdminLogin: function (req, res, next) {
+		res.render('admin/admin_login');
+	},
 	adminLogin: function (req, res, next) {
 
 		User.findOne({username: req.body.username}, function (err, user) {

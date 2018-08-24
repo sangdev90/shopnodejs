@@ -63,21 +63,21 @@ router.get('/checkout', publicController.getCheckout);
 router.post('/checkout', publicController.createTransaction);
 
 
-router.get('/admin', loggedin, adminController.admin);
-router.post('/admin/login', adminController.adminLogin);
+// router.get('/admin', loggedin, adminController.admin);
+// router.post('/admin/login', adminController.adminLogin);
 
-router.get('/admin/add-cate', loggedin, adminController.getCate);
-router.post('/admin/add-cate', adminController.createCate);
+// router.get('/admin/add-cate', loggedin, adminController.getCate);
+// router.post('/admin/add-cate', adminController.createCate);
 
-router.get('/admin/add-product', loggedin, adminController.getProduct);
-router.post('/admin/add-product', adminController.createProduct);
+// router.get('/admin/add-product', loggedin, adminController.getProduct);
+// router.post('/admin/add-product', adminController.createProduct);
 
-router.get('/admin/add-user', loggedin, adminController.getUser);
-router.post('/admin/add-user',[
-	check('txtName').not().isEmpty().withMessage('username not empty !'),
-	check('txtPass').not().isEmpty().withMessage('password not empty !'),
-	check('txtRe-Pass').not().equals(check('txtPass')).withMessage('re-password not match !'),
-	check('txtEmail').isEmail().withMessage('email not empty !'),
-	check('numLevel').not().isEmpty().withMessage('level not empty !'),
-	], adminController.createUser);
+// router.get('/admin/add-user', loggedin, adminController.getUser);
+// router.post('/admin/add-user',[
+// 	check('txtName').not().isEmpty().withMessage('username not empty !'),
+// 	check('txtPass').not().isEmpty().withMessage('password not empty !'),
+// 	check('txtRe-Pass').not().equals(check('txtPass')).withMessage('re-password not match !'),
+// 	check('txtEmail').isEmail().withMessage('email not empty !'),
+// 	check('numLevel').not().isEmpty().withMessage('level not empty !'),
+// 	], adminController.createUser);
 module.exports = router;
