@@ -11,7 +11,11 @@ $(document).ready(function () {
 
 	menu();
 	updateQuantity();
-	
+	var user = $('.user').text();
+	console.log(user);
+	if (user !== 'Login' && user !== '') {
+		$('.cover-chatbox').css('display', 'none');
+	}
 });
 
 

@@ -123,7 +123,6 @@ module.exports = {
 	getDetailProduct: function(req, res, next) {
 		var id = req.params.id;
 		var cate = req.params.cate;
-		console.log('get detail product');
 		Product.findOne({'id' : id}).then(function (product) {
 			Category.findOne({'id' : product.category_id}).then(function (cate) {
 				Product.find({'category_id' : cate.id}).skip(0).limit(4).sort({id : -1}).then(function (relatedItem) {

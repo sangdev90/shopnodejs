@@ -15,17 +15,15 @@ const jwt = require('jsonwebtoken');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var apiRouter = require('./routes/api');
 
 require('./passport')(passport);
 require('./chat')(io);
+apiRouter(app);
 
-
-
+const db_url = process.env.mLab_URL || process.env.DB_Localhost;
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://heroku_jml0jqz8:rgpvrp7uao78ji0718avtc1jgf@ds127342.mlab.com:27342/heroku_jml0jqz8');
-
-
-
+mongoose.connect("mongodb://heroku_jml0jqz8:rgpvrp7uao78ji0718avtc1jgf@ds127342.mlab.com:27342/heroku_jml0jqz8");
 
 
 // view engine setup
@@ -71,7 +69,7 @@ app.use(function(err, req, res, next) {
 
 var port = process.env.PORT || 3000;
 http.listen(port,()=>{
-  console.log(`Server listen port ${port}`)
+	console.log(`Server listen port ${port}`)
 });
 
 

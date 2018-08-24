@@ -1,4 +1,4 @@
-var socket = io('https://shoppingnodejs.herokuapp.com');
+var socket = io('https://shoppingnodejs.herokuapp.com' || 'http://localhot:3000');
 
 socket.emit('admin-connect', 'admin');
 
