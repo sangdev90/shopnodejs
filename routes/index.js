@@ -24,13 +24,7 @@ var loggedin = function (req, res, next) {
 		res.redirect('/login');
 	}
 }
-var adminLogin = function (req, res, next) {
-	if (req.user) {
-		next();
-	} else {
-		res.render('admin/admin_login');
-	}
-}
+
 /* GET home page. */
 router.get('/', publicController.getIndex);
 
